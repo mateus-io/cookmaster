@@ -1,0 +1,15 @@
+main.recipes {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  width: 100%;
+  gap: 1em;
+}
+
+.recipes-title {
+  text-align: center;
+  margin-top: 2rem;
+}

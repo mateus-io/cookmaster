@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --primary-color: #FF4791;
+  --primary-color-hover: #ec377f;
+  --secondary-color: #FC9D87;
+  --white: #FFFFFF;
+  --black: #000000;
+  --dark-grey: #1D1C26;
+  --medium-grey: #8F8FA1;
+  --grey: #E6E6E6;
+}

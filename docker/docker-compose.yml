@@ -1,0 +1,63 @@
+version: "2"
+
+services:
+  # CookMaster Backend
+  cookmaster-backend:
+    container_name: cookmaster-backend
+    links:
+      - mongo
+    depends_on:
+      mongo:
+        condition: service_healthy
+    build:
+      context: ../mateusapolinario-back-test
+      dockerfile: ./docker/Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      proxy:
+        ipv4_address: 172.18.0.12
+
+  # CookMaster Frontend
+  cookmaster-frontend:
+    container_name: cookmaster-frontend
+    depends_on:
+      - cookmaster-backend
+    build:
+      context: ../mateusapolinario-front-test
+      dockerfile: ./docker/Dockerfile
+    restart: always
+    ports:
+      - "4173:4173"
+    networks:
+      proxy:
+        ipv4_address: 172.18.0.13
+      
+  # Mongo Database
+  mongo:
+    image: mongo
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      MONGO_INITDB_DATABASE: Cookmaster
+    volumes:
+      - ./mongo-init/:/docker-entrypoint-initdb.d/:ro
+    ports:
+      - "27017:27017"
+    command: mongod --quiet --logpath /dev/null
+    networks:
+      proxy:
+        ipv4_address: 172.18.0.14
+
+networks:
+  proxy:
+    external:
+      name: proxy
+      

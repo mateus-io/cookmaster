@@ -1,0 +1,41 @@
+main.recipe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  gap: 1rem;
+}
+
+main.recipe > h1 {
+  font-weight: 700;
+  font-size: 2em;
+  color: var(--medium-grey);
+}
+
+main.recipe > img {
+  width: 20rem;
+}
+
+main.recipe .ingredients {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+main.recipe .ingredients > span {
+  padding: 1rem;
+  font-size: 1.5em;
+  margin: 1rem;
+  background: var(--grey);
+  color: var(--black);
+  font-weight: 700;
+}
+
+main.recipe p {
+  font-weight: 400;
+  color: var(--medium-grey);
+  font-size: 1.2em;
+}
